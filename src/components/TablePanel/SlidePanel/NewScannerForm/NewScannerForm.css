@@ -1,0 +1,8 @@
+.newScannerForm{
+    padding: 1em;
+}
+
+.formButtons{
+    display: flex;
+    justify-content: space-between;
+}

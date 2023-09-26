@@ -1,0 +1,43 @@
+.slidePanel {
+    width: 30em;
+    background-color: #FFF;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-color: #1B262C;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    position: absolute;
+    right: 0;
+    box-shadow: -7px 7px 10px #1B262C33;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(1000px);
+              transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+            transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}

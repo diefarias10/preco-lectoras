@@ -1,0 +1,57 @@
+.tablePanel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.scannersTable {
+    border-radius: 5px;
+    border-spacing: 0;
+    box-shadow: 0px 4px 4px #1B262C33;
+    padding: 0.5em;
+    background-color: #FFF;
+}
+
+.scannersTable p{
+    font-size: 14px;
+   color: #1B262C;
+}
+
+.colNames th {
+    padding: 0.5em 0;
+}
+
+.scannersTable thead p {
+    text-align: left;
+}
+
+.scannersTable tbody tr {
+    height: 2em;
+}
+
+.scannersTable tbody td{
+    border-bottom: 1px solid  #1B262C33;
+}
+
+.scannersTable tbody tr{
+    transition: background-color 0.15s;
+}
+
+.scannersTable tbody tr:hover {
+    background-color: #BBE1FA33;
+}
+
+.scannersTable th,
+td {
+    max-width: 10em;
+    min-width: 10em;
+    overflow: hidden;
+}
+
+.scannersTable h1 {
+    font-size: 1.5em;
+    color: #1B262C;
+    margin-bottom: 0.5em;
+}

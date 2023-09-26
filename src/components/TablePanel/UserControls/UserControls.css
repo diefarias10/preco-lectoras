@@ -1,0 +1,14 @@
+.userControls {
+    display: flex;
+    justify-content: space-around;
+}
+
+.userControls svg {
+    height: 1.2em;
+    transition: color 0.15s;
+}
+
+.userControls svg:hover{
+    color: #3282B8;
+    cursor: pointer;
+}

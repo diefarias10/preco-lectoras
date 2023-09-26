@@ -1,0 +1,51 @@
+.statePill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    letter-spacing: 0.05em;
+}
+
+.statePill .text {
+    font-size: 0.8em;
+}
+
+.green {
+    border: 1px solid #00B96133;
+    background-color: #C5F7DC;
+
+}
+
+.green .text {
+    color: #00B961;
+}
+
+.blue {
+    border: 1px solid #2C7CE533;
+    background-color: #CDE2FF;
+
+}
+
+.blue .text {
+    color: #2C7CE5;
+}
+
+.red {
+    border: 1px solid #E7352033;
+    background-color: #FFCFCB;
+
+}
+
+.red .text {
+    color: #E73520;
+}
+
+.yellow {
+    border: 1px solid #E8991133;
+    background-color: #FFE8C3;
+
+}
+
+.yellow .text {
+    color: #E89911;
+}

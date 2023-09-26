@@ -1,0 +1,24 @@
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #FFF;
+    padding-left: 0.5em;
+    border-radius: 3px;
+    margin-top: 0.3em;
+}
+
+.searchBar input {
+    height: 2em;
+    padding: 0 1em;
+    font-size: 14px;
+    border: none;
+}
+
+.searchBar input::-webkit-inner-spin-button{
+    appearance: none;
+}
+
+.searchBar input:focus{
+    outline: none;
+}

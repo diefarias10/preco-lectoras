@@ -1,0 +1,13 @@
+.scannerSearch {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 0.5em 1em;
+    background-color: #1B262C;
+}
+
+.searchTitle{
+    font-size: 1em;
+    color: #F5F5F5;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.2em;
+}
