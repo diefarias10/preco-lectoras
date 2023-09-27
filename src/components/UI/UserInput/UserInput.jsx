@@ -1,11 +1,11 @@
 import React from "react";
 import "./UserInput.css";
 
-export default function UserInput({ label, inputType, placeholder }) {
+export default function UserInput({ label, inputType, placeholder, action }) {
     return (
         <div className="userInput">
             <span className="label"> {label} </span>
-            <input type={inputType} placeholder={placeholder}/>
+            <input type={inputType} placeholder={placeholder} onChange={e => action(e.target.value)} />
         </div>
 
     )
