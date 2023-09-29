@@ -14,29 +14,12 @@ import NewScannerForm from "./SlidePanel/NewScannerForm/NewScannerForm";
 
 
 export default function TablePanel() {
-    /*const [scannerList, setScannerList] = useState([]);*/
     const { slidePanel, toggleSlidePanel, getScanners, scannerList } = useContext(AppContext)
 
     useEffect(() => {
         getScanners()
-    }, [])
+    }, [scannerList])
 
-    /*const getScanners = async () => {
-        const tidyScanners = []
-        const collectionRef = collection(db, 'scanners')
-
-        try {
-            const res = await getDocs(collectionRef);
-            res.docs.forEach((item) => {
-                const tidyItem = { ...item.data(), Id: item.id }
-                tidyScanners.push(tidyItem)
-            });
-            setScannerList(tidyScanners);
-        }
-        catch (error) {
-            console.error(error)
-        }
-    }*/
 
     return (
         <div className="tablePanel">

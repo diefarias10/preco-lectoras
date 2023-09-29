@@ -7,6 +7,7 @@ export const AppContext = createContext()
 export const AppProvider = ({ children }) => {
     const [slidePanel, setSlidePanel] = useState(true)
     const [scannerList, setScannerList] = useState([]);
+    const [scannerStates, setScannerStates] = useState(['Disponible', 'Mantenimiento', 'En uso', 'De baja'])
 
 
     const getScanners = async () => { // Trae todos las lectoras de Firebase para guardarlas en scannerList
@@ -28,7 +29,15 @@ export const AppProvider = ({ children }) => {
     }
 
     const addScanner = (newScanner) => {
-        addDoc(collection(db, 'scanners'), { newScanner })
+        addDoc(collection(db, 'scanners'), {
+            Date: newScanner.date,
+            Serial: newScanner.serial,
+            Model: newScanner.model,
+            Customer: newScanner.customer,
+            Location: newScanner.location,
+            Observations: newScanner.observation,
+            State: newScanner.state
+        })
     }
 
     const toggleSlidePanel = () => { // Muestra/Oculta panel lateral 
@@ -36,7 +45,7 @@ export const AppProvider = ({ children }) => {
     }
 
     return (
-        <AppContext.Provider value={{ slidePanel, toggleSlidePanel, getScanners, scannerList, addScanner }}>
+        <AppContext.Provider value={{ slidePanel, toggleSlidePanel, getScanners, scannerList, scannerStates, addScanner }}>
             {children}
         </AppContext.Provider>
     );

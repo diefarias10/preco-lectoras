@@ -1,5 +1,7 @@
 .newScannerForm{
     padding: 1em;
+    background-color: #FFF;
+    border-radius: 10px;
 }
 
 .formButtons{
