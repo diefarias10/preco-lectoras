@@ -1,0 +1,21 @@
+.editScannerForm p {
+    color: red
+}
+
+.editScannerForm {
+    padding: 1em;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+.titleArea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.scannerNum {
+    font-weight: bold;
+    font-size: 22px;
+    color: #0F4C75;
+}

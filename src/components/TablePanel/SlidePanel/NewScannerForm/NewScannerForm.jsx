@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
 import "./NewScannerForm.css";
+import SlidePanel from "../SlidePanel";
 import Title from "../../../UI/Title/Title";
 import UserInput from "../../../UI/UserInput/UserInput";
 import Button from "../../../UI/Button/Button";
 import { AppContext } from "../../../../context/AppContext";
 import UserSelect from "../../../UI/UserSelect/UserSelect";
+import ItemState from "../../../UI/ItemState/ItemState";
 
-export default function NewScannerForm() {
-    const { slidePanel, toggleSlidePanel, addScanner, scannerStates } = useContext(AppContext)
+export default function NewScannerForm({ visible }) {
+    const {  toggleCreateMode, addScanner, scannerStates } = useContext(AppContext)
     const [newScanner, setNewScanner] = useState({
         date: '',
         serial: 0,
@@ -15,7 +17,7 @@ export default function NewScannerForm() {
         customer: '',
         location: '',
         observation: '',
-        state: ''
+        state: 'Disponible'
     })
 
     // Guardo inputs del usuario en el estado newScanner 
@@ -38,7 +40,7 @@ export default function NewScannerForm() {
         setNewScanner({ ...newScanner, observation: observationInput })
     }
     const getStateInput = (stateInput) => {
-        
+
         setNewScanner({ ...newScanner, state: stateInput })
         console.log('La opcion elegida es:' + stateInput)
     }
@@ -48,44 +50,32 @@ export default function NewScannerForm() {
     }
 
     const rollbackForm = () => { // Resetea los datos de newScanner y cierra el formulario 
-        toggleSlidePanel()
+        toggleCreateMode()
         resetNewScanner()
     }
 
     const submitForm = () => {
         console.log(newScanner)
         addScanner(newScanner)
-        toggleSlidePanel()
-    }
-
-    const handleDropdownChange = (e)=>{
-        setNewScanner({ ...newScanner, state: e.target.value })
+        toggleCreateMode()
     }
 
     return (
-        <div className="newScannerForm">
-            <Title text="Agregar nueva lectora" color="#1B262C" />
-            <UserInput label="Fecha de alta:" type="date" placeholder="DD/MM/AAAA" action={getDateInput} />
-            <UserInput label="N° serie:" type="number" placeholder="N° de serie de lectora" action={getSerialInput} />
-            <UserInput label="Modelo de lectora:" type="text" placeholder="Nombre de modelo" action={getModellInput} />
-            <UserInput label="Cliente:" type="text" placeholder="Nombre de cliente" action={getCustomerlInput} />
-            <UserInput label="Ubicacion:" type="text" placeholder="Ubicacion fisica de lectora" action={getLocationlInput} />
-            <UserInput label="Observaciones:" type="text" placeholder="(Opcional)" action={getObservationInput} />
-            
-            <select value={newScanner.state} onChange={handleDropdownChange}>
-                <option value="">Seleccionar...</option>
-                {scannerStates.map((item) => (
-                    <option value={item}>{item}</option>
-                ))}
-            </select>
+        <SlidePanel visible={visible}>
+            <div className="newScannerForm">
+                <Title text="Agregar nueva lectora" color="#1B262C" />
+                <UserInput label="Fecha de alta:" type="date" placeholder="DD/MM/AAAA" action={getDateInput} />
+                <UserInput label="N° serie:" type="number" placeholder="N° de serie de lectora" action={getSerialInput} />
+                <UserInput label="Modelo de lectora:" type="text" placeholder="Nombre de modelo" action={getModellInput} />
+                <UserInput label="Cliente:" type="text" placeholder="Nombre de cliente" action={getCustomerlInput} />
+                <UserInput label="Ubicacion:" type="text" placeholder="Ubicacion fisica de lectora" action={getLocationlInput} />
+                <UserInput label="Observaciones:" type="text" placeholder="(Opcional)" action={getObservationInput} />
 
-
-            <div className="formButtons">
-                <Button text="CANCELAR" type="secondary" action={rollbackForm} />
-                <Button text="CONFIRMAR" type="primary" action={submitForm} />
+                <div className="formButtons">
+                    <Button text="CANCELAR" type="secondary" action={rollbackForm} />
+                    <Button text="CONFIRMAR" type="primary" action={submitForm} />
+                </div>
             </div>
-        </div>
+        </SlidePanel>
     );
 }
-
-// <UserSelect label="Estado inicial" options={scannerStates} selection={getStateInput}/>

@@ -5,8 +5,37 @@ import { db } from '../firebase/firebase';
 export const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-    const [slidePanel, setSlidePanel] = useState(true)
-    const [scannerList, setScannerList] = useState([]);
+    const [slidePanel, setSlidePanel] = useState(false)
+    const [createMode, setCreateMode] = useState(false)
+    const [editMode, setEditMode] = useState(false)
+    const [scannerList, setScannerList] = useState([
+        {
+            Serial: 111111,
+            Date: '30/09/23',
+            Model: 'VisionX',
+            Customer: 'Precodata',
+            Location: 'Soporte',
+            State: 'Disponible',
+            Observation: 'Ninguna'
+        },
+        {
+            Serial: 222222,
+            Date: '30/09/23',
+            Model: 'VisionX',
+            Customer: 'Precodata',
+            Location: 'Soporte',
+            State: 'En uso',
+            Observation: 'Ninguna'
+        },
+        {
+            Serial: 333333,
+            Date: '30/09/23',
+            Model: 'VisionX',
+            Customer: 'Precodata',
+            Location: 'Soporte',
+            State: 'Mantenimiento',
+            Observation: 'Ninguna'
+        }]);
     const [scannerStates, setScannerStates] = useState(['Disponible', 'Mantenimiento', 'En uso', 'De baja'])
 
 
@@ -29,7 +58,7 @@ export const AppProvider = ({ children }) => {
     }
 
     const addScanner = (newScanner) => {
-        addDoc(collection(db, 'scanners'), {
+        /*addDoc(collection(db, 'scanners'), {
             Date: newScanner.date,
             Serial: newScanner.serial,
             Model: newScanner.model,
@@ -37,15 +66,33 @@ export const AppProvider = ({ children }) => {
             Location: newScanner.location,
             Observations: newScanner.observation,
             State: newScanner.state
+        })*/
+        scannerList.push({
+            Serial: newScanner.serial,
+            Date: newScanner.date,
+            Model: newScanner.model,
+            Customer: newScanner.customer,
+            Location: newScanner.location,
+            State: newScanner.state,
+            Observation: newScanner.observation
         })
+
     }
 
     const toggleSlidePanel = () => { // Muestra/Oculta panel lateral 
         setSlidePanel(!slidePanel)
     }
 
+    const toggleCreateMode = () => { // Muestra/Oculta panel lateral 
+        setCreateMode(!createMode)
+    }
+
+    const toggleEditMode = () => { // Muestra/Oculta panel lateral 
+        setEditMode(!editMode)
+    }
+
     return (
-        <AppContext.Provider value={{ slidePanel, toggleSlidePanel, getScanners, scannerList, scannerStates, addScanner }}>
+        <AppContext.Provider value={{ createMode, editMode, toggleCreateMode, toggleEditMode, getScanners, scannerList, scannerStates, addScanner }}>
             {children}
         </AppContext.Provider>
     );

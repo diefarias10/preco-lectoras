@@ -11,15 +11,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import { AppContext } from "../../context/AppContext";
 import NewScannerForm from "./SlidePanel/NewScannerForm/NewScannerForm";
+import EditScannerForm from "./SlidePanel/EditScannerForm/EditScannerForm";
 
 
 export default function TablePanel() {
-    const { slidePanel, toggleSlidePanel, getScanners, scannerList } = useContext(AppContext)
+    const { editMode, createMode, toggleEditMode, toggleCreateMode, getScanners, scannerList } = useContext(AppContext)
+    const [editionData, setEditionData] = useState({})
 
     useEffect(() => {
-        getScanners()
+        //getScanners()
     }, [scannerList])
 
+
+    const saveEditionData = (scanner) => {
+        setEditionData(scanner)
+        toggleEditMode()
+    }
 
     return (
         <div className="tablePanel">
@@ -50,7 +57,7 @@ export default function TablePanel() {
                                 <td><p>{item.Location}</p></td>
                                 <td><ItemState state={item.State} /></td>
                                 <td>
-                                    <UserControls />
+                                    <UserControls scanner={item} getScannerData={saveEditionData} />
                                 </td>
                             </tr>
                         ))}
@@ -58,10 +65,8 @@ export default function TablePanel() {
                 </table>
             </div>
 
-            <SlidePanel visible={slidePanel}>
-                <NewScannerForm />
-            </SlidePanel>
-
+            <NewScannerForm visible={createMode} />
+            <EditScannerForm visible={editMode} scannerData={editionData} />
 
 
         </div>

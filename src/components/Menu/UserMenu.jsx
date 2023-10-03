@@ -6,13 +6,13 @@ import { AppContext } from "../../context/AppContext";
 
 
 export default function UserMenu() {
-    const { slidePanel, toggleSlidePanel } = useContext(AppContext)
+    const { createMode, toggleCreateMode } = useContext(AppContext)
 
     return (
         <div className="menuContainer">
             <ButtonPanel />
             <div className="menuFooter">
-                <Button text="AGREGAR LECTORA" type="primary" action={toggleSlidePanel} />
+                <Button text="AGREGAR LECTORA" type="primary" action={toggleCreateMode} />
             </div>
         </div>
     );
