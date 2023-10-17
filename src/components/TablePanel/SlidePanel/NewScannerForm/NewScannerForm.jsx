@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./NewScannerForm.css";
 import SlidePanel from "../SlidePanel";
 import Title from "../../../UI/Title/Title";
@@ -9,16 +9,21 @@ import UserSelect from "../../../UI/UserSelect/UserSelect";
 import ItemState from "../../../UI/ItemState/ItemState";
 
 export default function NewScannerForm({ visible }) {
-    const {  toggleCreateMode, addScanner, scannerStates } = useContext(AppContext)
+    const { toggleCreateMode, addScanner, scannerStates } = useContext(AppContext)
     const [newScanner, setNewScanner] = useState({
         date: '',
-        serial: 0,
+        serial: '',
         model: '',
         customer: '',
         location: '',
         observation: '',
         state: 'Disponible'
     })
+
+    useEffect(() => {
+
+        console.log(newScanner)
+    }, [toggleCreateMode])
 
     // Guardo inputs del usuario en el estado newScanner 
     const getDateInput = (dateInput) => {
@@ -39,23 +44,26 @@ export default function NewScannerForm({ visible }) {
     const getObservationInput = (observationInput) => {
         setNewScanner({ ...newScanner, observation: observationInput })
     }
-    const getStateInput = (stateInput) => {
-
-        setNewScanner({ ...newScanner, state: stateInput })
-        console.log('La opcion elegida es:' + stateInput)
-    }
 
     const resetNewScanner = () => {
-        setNewScanner({ date: '', serial: 0, model: '', customer: '', location: '', observation: '', state: '' })
+        setNewScanner({
+            date: '',
+            serial: 0,
+            model: '',
+            customer: '',
+            location: '',
+            observation: '',
+            state: 'Disponible'
+        })
     }
 
     const rollbackForm = () => { // Resetea los datos de newScanner y cierra el formulario 
-        toggleCreateMode()
         resetNewScanner()
+        toggleCreateMode()
     }
 
     const submitForm = () => {
-        console.log(newScanner)
+        console.log('Se agregó lectora correctamente: ' + newScanner)
         addScanner(newScanner)
         toggleCreateMode()
     }
@@ -64,12 +72,13 @@ export default function NewScannerForm({ visible }) {
         <SlidePanel visible={visible}>
             <div className="newScannerForm">
                 <Title text="Agregar nueva lectora" color="#1B262C" />
-                <UserInput label="Fecha de alta:" type="date" placeholder="DD/MM/AAAA" action={getDateInput} />
-                <UserInput label="N° serie:" type="number" placeholder="N° de serie de lectora" action={getSerialInput} />
-                <UserInput label="Modelo de lectora:" type="text" placeholder="Nombre de modelo" action={getModellInput} />
-                <UserInput label="Cliente:" type="text" placeholder="Nombre de cliente" action={getCustomerlInput} />
-                <UserInput label="Ubicacion:" type="text" placeholder="Ubicacion fisica de lectora" action={getLocationlInput} />
-                <UserInput label="Observaciones:" type="text" placeholder="(Opcional)" action={getObservationInput} />
+
+                <UserInput label="Fecha de alta" type="date" placeholder="DD/MM/AAAA" value={newScanner.date} action={getDateInput} />
+                <UserInput label="N° serie" type="number" placeholder="N° de serie de lectora" value={newScanner.serial} action={getSerialInput} />
+                <UserInput label="Modelo" type="text" placeholder="Nombre de modelo" value={newScanner.model} action={getModellInput} />
+                <UserInput label="Cliente" type="text" placeholder="Nombre de cliente" value={newScanner.customer} action={getCustomerlInput} />
+                <UserInput label="Ubicacion" type="text" placeholder="Ubicacion fisica de lectora" value={newScanner.location} action={getLocationlInput} />
+                <UserInput label="Observaciones" type="text" placeholder="(Opcional)" value={newScanner.observation} action={getObservationInput} />
 
                 <div className="formButtons">
                     <Button text="CANCELAR" type="secondary" action={rollbackForm} />

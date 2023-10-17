@@ -19,3 +19,70 @@
     font-size: 22px;
     color: #0F4C75;
 }
+
+.stateSelection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stateOption {
+    width: 10em;
+    transition: transform 0.2s;
+    font-size: 20px;
+}
+
+.stateOption:hover {
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50px;
+}
+
+.stateOption .statePill {
+    padding: 0.2em 0;
+    transition: font-weight 0.3s, border-color 0.3s;
+}
+
+.stateOption .green{
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.stateOption .green:hover {
+    border-color: #00B961;
+}
+
+.stateOption .blue{
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+}
+
+.stateOption .blue:hover {
+    border-color: #2C7CE5;
+}
+
+.stateOption .red{
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 10px;
+}
+
+.stateOption .red:hover {
+    border-color: #E73520;
+}
+
+.stateOption .yellow{
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.stateOption .yellow:hover {
+    border-color: #E89911;
+}

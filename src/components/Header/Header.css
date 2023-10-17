@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    position: absolute;
+    background-color: #FFF;
+    width: 100%;
+    z-index: 2;
+    box-shadow: 0px 0px 4px #1B262C33;
+}
+
+.header img {
+    width: 13em;
+    margin: 0.5em
+}

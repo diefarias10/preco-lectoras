@@ -1,22 +1,42 @@
-.userInput{
-    display: flex;
-    flex-direction: column;
-    margin: 1em 0;
+.userInput {
+    margin: 1.5em 0;
+    position: relative;
 }
 
-.label{
+.userInput label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
     font-size: 14px;
-    margin-bottom: 0.1em;
+    letter-spacing: 0.2px;
+    padding: 0 5px;
+    transition: 0.3s;
+    color: darkgrey;
+    background: transparent;
+    pointer-events: none;
 }
 
-.userInput input{
+.userInput input {
+    width: 20em;
     height: 2em;
-    font-size: 14px;
+    padding: 0.3em 1em 0;
+    background: #FFF;
+    border: 1.2px solid #1B262C;
+    outline: none;
     border-radius: 3px;
-    border: 1px solid #1B262C;
-    padding: 0 1em;
+    transition: border-color 0.3s border-width 0.3s;
 }
 
-.userInput input:focus{
-    border: 1px solid #3282B8;
+.userInput input:focus {
+    border-color: #3282B8;
+}
+
+.userInput input:focus~label,
+.userInput input:valid~label {
+    top: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #1B262C;
+    background-color: #FFF;
 }

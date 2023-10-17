@@ -5,6 +5,7 @@ import UserInput from "../../../UI/UserInput/UserInput";
 import SlidePanel from "../SlidePanel";
 import Button from "../../../UI/Button/Button";
 import Title from "../../../UI/Title/Title";
+import ItemState from "../../../UI/ItemState/ItemState";
 
 
 export default function EditScannerForm({ visible, scannerData }) {
@@ -31,6 +32,22 @@ export default function EditScannerForm({ visible, scannerData }) {
                 <UserInput label="Cliente:" inputType="text" value={scannerData.Customer} />
                 <UserInput label="Ubicación:" inputType="text" value={scannerData.Location} />
                 <UserInput label="Observaciones:" inputType="text" value={scannerData.Observation} />
+
+                <div className="stateSelection">
+                    <div className="stateOption">
+                        <ItemState state="Disponible" />
+                    </div>
+                    <div className="stateOption">
+                        <ItemState state="En uso" />
+                    </div>
+                    <div className="stateOption">
+                        <ItemState state="De baja" />
+                    </div>
+                    <div className="stateOption">
+                        <ItemState state="Mantenimiento" />
+                    </div>
+
+                </div>
 
                 <div className="formButtons">
                     <Button text="CANCELAR" type="secondary" action={cancelEdition} />

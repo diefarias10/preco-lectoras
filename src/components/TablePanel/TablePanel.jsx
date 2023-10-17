@@ -28,6 +28,8 @@ export default function TablePanel() {
         toggleEditMode()
     }
 
+
+
     return (
         <div className="tablePanel">
             <div>
